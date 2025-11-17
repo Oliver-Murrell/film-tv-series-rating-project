@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/style.css" />
+
+<div class="container">
+  <h1>Edit Film / TV Series</h1>
+
+  <form method="POST" action="/media/edit/<%= media.id %>">
+    <p><strong>Title:</strong> <%= media.title %> (<%= media.year %>)</p>
+
+    <label for="rating">Your Rating (1–10)</label>
+    <input
+      type="number"
+      id="rating"
+      name="rating"
+      min="1"
+      max="10"
+      value="<%= media.rating %>"
+      required
+    />
+
+    <div class="button-group">
+      <button type="submit" class="btn-primary">💾 Save Changes</button>
+      <a class="btn-secondary" href="/media">❌ Cancel</a>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,25 @@
+<input type="text" name="title" id="title" placeholder="Title" autocomplete="off" />
+<ul id="suggestions"></ul>
+
+
+
+<script>
+  const input = document.getElementById('title');
+  const suggestions = document.getElementById('suggestions');
+
+  input.addEventListener('input', async () => {
+    const res = await fetch(`/media/search?q=${input.value}`);
+    const data = await res.json();
+    suggestions.innerHTML = '';
+    data.forEach(title => {
+      const li = document.createElement('li');
+      li.textContent = title;
+      li.onclick = () => {
+        input.value = title;
+        suggestions.innerHTML = '';
+      };
+      suggestions.appendChild(li);
+    });
+  });
+</script>
+

@@ -1,0 +1,642 @@
+/* Ensure all info paragraphs are visible */
+.info p {
+  display: block !important;
+  color: #fff !important;
+  margin: 0.2em 0 0.2em 0;
+  font-size: 1.05rem;
+}
+/* Ensure info section is visible and styled in card-front */
+.card-front .info {
+  margin-top: 0.3rem;
+  text-align: center;
+  width: 100%;
+}
+/* Card Flip Styles */
+
+.media-card {
+  background: rgba(60, 65, 70, 0.92);
+  backdrop-filter: blur(6px);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  border-radius: 16px;
+  border-left: 6px solid #00bcd4;
+  border: 1px solid #232526;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+  box-shadow: 0 0 12px 2px rgba(255, 255, 255, 0.1),
+    0 4px 24px rgba(0, 0, 0, 0.45);
+  min-height: 520px;
+  height: 100%;
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  overflow: visible;
+}
+.card-flip {
+  perspective: 1200px;
+  min-height: 520px;
+  min-width: 260px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.8rem 1.2rem 1.5rem 1.2rem;
+  box-sizing: border-box;
+}
+.poster-center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.card-front {
+  z-index: 2;
+  background: inherit;
+}
+.card-back {
+  background: rgba(40, 44, 52, 0.98);
+  color: #fff;
+  transform: rotateY(180deg);
+  z-index: 1;
+  padding: 1.2rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.card-poster {
+  display: block;
+  margin: 0 auto 1rem auto;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  border-radius: 6px;
+  width: 110%;
+  max-width: 450px;
+  height: auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.card-poster:focus {
+  outline: 2px solid #fff;
+}
+.summary-content {
+  width: 100%;
+  text-align: center;
+}
+.summary-content h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.summary-content p {
+  font-size: 1.05rem;
+  color: #e0e0e0;
+}
+/* Back to List button matches page buttons */
+.btn-back {
+  background: rgba(60, 65, 70, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  border: 1px solid #2c2f33;
+  color: #e0e0e0;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-family: inherit;
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s,
+    background 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Back to List button hover/focus matches card and pagination */
+.btn-back:hover,
+.btn-back:focus {
+  border-color: #fff;
+  background: rgba(80, 85, 90, 0.98);
+  color: #fff;
+  box-shadow: 0 0 24px 6px rgba(255, 255, 255, 0.18),
+    0 8px 32px rgba(0, 0, 0, 0.55);
+  transform: translateY(-2px);
+}
+/* Add New Film / TV Series button styling for both <a> and <button> */
+.btn-add,
+button.btn-add,
+a.btn-add,
+.btn-primary,
+.btn-danger,
+.btn-secondary {
+  background: rgba(60, 65, 70, 0.92);
+  color: #fff;
+  border: 1px solid #2c2f33;
+  padding: 0.7rem 1.2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  font-size: 1.05rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: box-shadow 0.3s, background 0.3s, transform 0.1s,
+    border-color 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  min-width: 100px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Remove scale transform to prevent text blur on hover */
+/* Add New Film / TV Series button hover/focus matches card and pagination */
+.btn-add:hover,
+button.btn-add:hover,
+a.btn-add:hover,
+.btn-add:focus,
+button.btn-add:focus,
+a.btn-add:focus,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: rgba(80, 85, 90, 0.98);
+  box-shadow: 0 0 24px 6px rgba(255, 255, 255, 0.18),
+    0 8px 32px rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-color: #fff;
+  outline: none;
+  transform: translateY(-2px);
+  will-change: transform;
+}
+/* Enhanced button and pagination styles */
+.btn,
+.btn-primary,
+.btn-secondary,
+.pagination .btn,
+.pagination .btn-primary,
+.pagination .btn-secondary {
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.08);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+.btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.pagination .btn:hover,
+.pagination .btn-primary:hover,
+.pagination .btn-secondary:hover {
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+  transform: translateY(-2px);
+  will-change: transform;
+}
+/* Make rating input smaller */
+#rating {
+  width: 80px;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 0.4rem 0.2rem;
+}
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.pagination .btn {
+  min-width: 40px;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.05rem;
+  border-radius: 16px;
+  background: rgba(60, 65, 70, 0.92);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  border: 1px solid #2c2f33;
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s,
+    background 0.3s;
+}
+.pagination .btn-primary {
+  background: rgba(60, 65, 70, 0.92);
+  color: #e0e0e0;
+  cursor: default;
+  pointer-events: none;
+  border: 1px solid #2c2f33;
+}
+.pagination .btn-secondary {
+  background: rgba(60, 65, 70, 0.92);
+  color: #e0e0e0;
+  border: 1px solid #2c2f33;
+}
+/* Card-style hover for pagination buttons */
+.pagination .btn:hover,
+.pagination .btn:focus,
+.pagination .btn-primary:hover,
+.pagination .btn-primary:focus,
+.pagination .btn-secondary:hover,
+.pagination .btn-secondary:focus {
+  border-color: #fff;
+  background: rgba(80, 85, 90, 0.98);
+  color: #fff;
+  transform: translateY(-2px);
+}
+/* Remove gradient for pagination .btn-secondary:hover to match other buttons */
+.pagination .btn-secondary:hover {
+  background: rgba(80, 85, 90, 0.98);
+}
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #181a1b 0%, #232526 100%);
+  color: #e0e0e0;
+  padding: 1rem;
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Container */
+.container {
+  text-align: center;
+  max-width: 960px;
+  margin: auto;
+  padding: 2rem;
+  background: #232526;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  border: 1px solid #2c2f33;
+}
+
+/* Header */
+
+h1 {
+  font-size: 3.2rem;
+  font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: rgba(60, 65, 70, 0.92);
+  border-left: 6px solid #00bcd4;
+  border: 1px solid #232526;
+  border-radius: 16px;
+  box-shadow: 0 0 12px 2px rgba(255, 255, 255, 0.1),
+    0 4px 24px rgba(0, 0, 0, 0.45);
+  padding: 1.2rem 2.2rem 1.2rem 2.2rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+/* Buttons */
+button,
+.btn {
+  padding: 0.6rem 1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #005fa3;
+}
+
+/* Form Styles */
+form {
+  max-width: 500px;
+  margin: 0 auto; /* center horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+input,
+textarea,
+select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+label {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Film Card List */
+.media-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.media-card {
+  background: rgba(60, 65, 70, 0.92);
+  backdrop-filter: blur(6px);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  border-radius: 16px;
+  border-left: 6px solid #00bcd4;
+  border: 1px solid #232526;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+  box-shadow: 0 0 12px 2px rgba(255, 255, 255, 0.1),
+    0 4px 24px rgba(0, 0, 0, 0.45);
+  min-height: 520px;
+  height: 100%;
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  overflow: visible;
+}
+
+.media-card:hover {
+  box-shadow: 0 0 24px 6px rgba(255, 255, 255, 0.18),
+    0 8px 32px rgba(0, 0, 0, 0.55);
+  border-color: #fff;
+  transform: scale(1.03) translateY(-6px);
+}
+
+.media-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.media-card .info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.media-card .actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Responsive Layout */
+@media (min-width: 600px) {
+  .media-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .media-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+#suggestions li:hover {
+  background-color: #e6f7ff;
+}
+
+/* Wrap input + suggestions in a container */
+.autocomplete-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Style the dropdown */
+#suggestions {
+  position: absolute;
+  top: 100%; /* appear below the input */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#suggestions li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#suggestions li:hover {
+  background-color: #f0f8ff;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.button-group button,
+.button-group .btn {
+  margin: 0;
+}
+
+/* Shared button styles */
+button,
+.btn-secondary {
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Primary action */
+.btn-primary {
+  background: rgba(60, 65, 70, 0.92);
+  color: #fff;
+  border: 1px solid #2c2f33;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: box-shadow 0.3s, background 0.3s, transform 0.1s,
+    border-color 0.3s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: rgba(80, 85, 90, 0.98);
+  box-shadow: 0 0 24px 6px rgba(255, 255, 255, 0.18),
+    0 8px 32px rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-color: #fff;
+  outline: none;
+  transform: translateY(-2px);
+  will-change: transform;
+}
+
+/* Secondary / cancel action */
+
+.btn-secondary {
+  background: rgba(60, 65, 70, 0.92);
+  color: #fff;
+  border: 1px solid #2c2f33;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: box-shadow 0.3s, background 0.3s, transform 0.1s,
+    border-color 0.3s;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: rgba(80, 85, 90, 0.98);
+  box-shadow: 0 0 24px 6px rgba(255, 255, 255, 0.18),
+    0 8px 32px rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-color: #fff;
+  outline: none;
+  transform: translateY(-2px);
+  will-change: transform;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.btn-primary,
+.btn-danger {
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  /* border and border-radius removed to allow individual button classes to set their own */
+  text-decoration: none;
+  display: inline-block;
+  min-width: 100px; /* Makes buttons same width */
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Delete button */
+.btn-danger {
+  background: rgba(60, 65, 70, 0.92);
+  color: #fff;
+  border: 1px solid #2c2f33;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: box-shadow 0.3s, background 0.3s, transform 0.1s,
+    border-color 0.3s;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background: rgba(80, 85, 90, 0.98);
+  box-shadow: 0 0 24px 6px rgba(255, 255, 255, 0.18),
+    0 8px 32px rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-color: #fff;
+  outline: none;
+  transform: translateY(-2px);
+  will-change: transform;
+}
+
+/* Standardize emoji icon size in edit/delete buttons */
+/* Ensure emoji icons are same size */
+
+.btn-add .icon-emoji,
+.btn-primary .icon-emoji,
+.btn-danger .icon-emoji,
+.btn-secondary .icon-emoji {
+  font-size: 1.25em;
+  vertical-align: middle;
+  line-height: 1;
+}
+.icon-emoji--edit {
+  font-size: 1.35em;
+  vertical-align: -0.1em;
+}
+.icon-emoji--delete {
+  font-size: 1.25em;
+  vertical-align: middle;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background: rgba(60, 65, 70, 0.98);
+  color: #fff;
+  margin: 25% auto;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 16px;
+  border: 2.5px solid #fff;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25),
+    0 0 24px 6px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-family: inherit;
+}
+
+.modal-content p {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.modal-content .button-group {
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}

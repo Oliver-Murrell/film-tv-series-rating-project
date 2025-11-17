@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="/style.css" />
+
+<div class="container">
+  <h1>Add a new Film / TV Series</h1>
+
+  <form method="POST" action="/media/new">
+    <label for="title">Film Or Series Title</label>
+    <div class="autocomplete-wrapper">
+      <input
+        type="text"
+        id="title"
+        name="title"
+        required
+        placeholder="e.g. Inception"
+      />
+      <ul id="suggestions"></ul>
+    </div>
+
+    <label for="rating">Your Rating (1–10)</label>
+    <input type="number" id="rating" name="rating" min="1" max="10" required />
+
+    <!-- <button type="submit">Add Film / Series</button> -->
+    <div class="button-group">
+      <button type="submit" class="btn-add">🎬 Add Film / TV Series</button>
+      <a class="btn-back" href="/media">↩ Back to list</a>
+    </div>
+  </form>
+
+  <ul
+    id="suggestions"
+    style="list-style: none; padding: 0; margin-top: 0.5rem"
+  ></ul>
+
+  <script>
+    // DOM references
+    const titleInput = document.getElementById("title");
+    const suggestionsList = document.getElementById("suggestions");
+
+    // Listen for keyup events
+    titleInput.addEventListener("keyup", async () => {
+      const query = titleInput.value.trim();
+
+      // Don't fetch if query is too short
+      if (query.length < 2) {
+        suggestionsList.innerHTML = "";
+        return;
+      }
+
+      try {
+        // Fetch suggestions from your Express route
+        const res = await fetch(`/media/search?q=${encodeURIComponent(query)}`);
+        const suggestions = await res.json();
+
+        // Clear old suggestions
+        suggestionsList.innerHTML = "";
+
+        // Show new suggestions
+        suggestions.forEach((title) => {
+          const li = document.createElement("li");
+          li.textContent = title;
+          li.style.cursor = "pointer";
+          li.style.padding = "4px 8px";
+          li.style.backgroundColor = "#f9f9f9";
+          li.style.border = "1px solid #ccc";
+          li.style.marginBottom = "2px";
+          li.addEventListener("click", () => {
+            titleInput.value = title;
+            suggestionsList.innerHTML = "";
+          });
+          suggestionsList.appendChild(li);
+        });
+      } catch (err) {
+        console.error("Search error:", err);
+      }
+    });
+  </script>
+</div>

@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="/style.css" />
+
+<div class="container">
+  <h1>Oliver's Film & TV Series Tracker</h1>
+  <a class="btn-add" href="/media/new">🎬 Add New Film / TV Series</a>
+
+  <div class="media-list">
+      <% media.forEach(item => { %>
+        <div class="media-card card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <img
+                src="<%= item.posterUrl || '/placeholder.png' %>"
+                alt="<%= item.title %> Poster"
+                class="card-poster"
+                onclick="flipCard(this)"
+                tabindex="0"
+              />
+              <div class="info">
+                <h3><%= item.title %> (<%= item.year %>)</h3>
+                <p><strong>Rating:</strong> <%= item.rating %>/10</p>
+              </div>
+            </div>
+            <div class="card-back" onclick="flipCard(this)">
+              <div class="summary-content">
+                <h3><%= item.title %> (<%= item.year %>)</h3>
+                <p><%= item.summary || 'No summary available.' %></p>
+              </div>
+            </div>
+          </div>
+          <div class="button-group">
+            <form method="GET" action="/media/edit/<%= item.id %>" style="display: inline;">
+              <button type="submit" class="btn-primary"><span class="icon-emoji icon-emoji--edit">🖊️</span> Edit</button>
+            </form>
+            <form method="POST" action="/media/delete/<%= item.id %>" class="delete-form" style="display: inline;">
+              <button type="button" class="btn-danger" onclick="openDeleteModal('<%= item.id %>')"><span class="icon-emoji icon-emoji--delete">🗑</span> Delete</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <script>
+    function flipCard(el) {
+      // Find the .card-inner parent
+      let cardInner = el.closest('.card-inner');
+      if (cardInner) {
+        cardInner.classList.toggle('flipped');
+      }
+    }
+    </script>
+  </div>
+
+  <!-- Pagination Controls -->
+  <% if (totalPages > 1) { %>
+    <div class="pagination">
+      <% if (page > 1) { %>
+        <a href="?page=<%= page - 1 %>" class="btn btn-secondary">Previous</a>
+      <% } %>
+      <% for (let i = 1; i <= totalPages; i++) { %>
+        <% if (i === page) { %>
+          <span class="btn btn-primary"><%= i %></span>
+        <% } else { %>
+          <a href="?page=<%= i %>" class="btn btn-secondary"><%= i %></a>
+        <% } %>
+      <% } %>
+      <% if (page < totalPages) { %>
+        <a href="?page=<%= page + 1 %>" class="btn btn-secondary">Next</a>
+      <% } %>
+    </div>
+  <% } %>
+      </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to delete this item?</p>
+    <form id="deleteForm" method="POST">
+      <div class="button-group">
+        <button type="submit" class="btn-danger">Yes, Delete</button>
+        <button type="button" class="btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openDeleteModal(itemId) {
+    const modal = document.getElementById('deleteModal');
+    const form = document.getElementById('deleteForm');
+    
+    // Update the form action with the item ID
+    form.action = `/media/delete/${itemId}`;
+    
+    // Show the modal
+    modal.style.display = 'block';
+  }
+
+  function closeDeleteModal() {
+    document.getElementById('deleteModal').style.display = 'none';
+  }
+
+  // Optional: Close the modal if user clicks outside it
+  window.onclick = function(event) {
+    const modal = document.getElementById('deleteModal');
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  }
+</script>
+
+  
