@@ -5,6 +5,7 @@
 
   <form method="POST" action="/media/new">
     <label for="title">Film Or Series Title</label>
+
     <div class="autocomplete-wrapper">
       <input
         type="text"
@@ -13,7 +14,10 @@
         required
         placeholder="e.g. Inception"
       />
-      <ul id="suggestions"></ul>
+      <ul
+        id="suggestions"
+        style="list-style: none; padding: 0; margin-top: 0.5rem"
+      ></ul>
     </div>
 
     <label for="rating">Your Rating (1–10)</label>
@@ -26,15 +30,21 @@
     </div>
   </form>
 
-  <ul
-    id="suggestions"
-    style="list-style: none; padding: 0; margin-top: 0.5rem"
-  ></ul>
-
   <script>
     // DOM references
     const titleInput = document.getElementById("title");
     const suggestionsList = document.getElementById("suggestions");
+
+    // Hide placeholder on focus, restore on blur if empty
+    const originalPlaceholder = titleInput.placeholder;
+    titleInput.addEventListener("focus", () => {
+      titleInput.placeholder = "";
+    });
+    titleInput.addEventListener("blur", () => {
+      if (!titleInput.value) {
+        titleInput.placeholder = originalPlaceholder;
+      }
+    });
 
     // Listen for keyup events
     titleInput.addEventListener("keyup", async () => {
@@ -63,7 +73,7 @@
           li.style.backgroundColor = "#f9f9f9";
           li.style.border = "1px solid #ccc";
           li.style.marginBottom = "2px";
-          li.addEventListener("click", () => {
+          li.addEventListener("mousedown", () => {
             titleInput.value = title;
             suggestionsList.innerHTML = "";
           });
@@ -72,6 +82,13 @@
       } catch (err) {
         console.error("Search error:", err);
       }
+    });
+
+    // Hide suggestions when input loses focus (but allow click selection)
+    titleInput.addEventListener("blur", () => {
+      setTimeout(() => {
+        suggestionsList.innerHTML = "";
+      }, 100);
     });
   </script>
 </div>

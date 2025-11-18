@@ -1,3 +1,40 @@
+#title[type="text"] {
+  width: 280px;
+  text-align: center;
+  font-size: 1.18rem;
+  padding: 0.5rem 0.3rem;
+  border: none !important;
+  border-radius: 4px;
+  background: #fff;
+  color: #222;
+  outline: none;
+  box-shadow: none !important;
+  margin-bottom: 0.5rem;
+}
+
+#suggestions {
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+  border-radius: 4px;
+  overflow: auto;
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background: rgba(40, 44, 52, 0.98);
+  border: 1px solid #232526;
+  position: static;
+  margin-top: 0.5rem;
+  z-index: auto;
+}
+#suggestions li {
+  border: none !important;
+  border-radius: 4px;
+  background: rgba(60, 65, 70, 0.96);
+}
 /* Ensure all info paragraphs are visible */
 .info p {
   display: block !important;
@@ -62,7 +99,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 0.8rem 1.2rem 1.5rem 1.2rem;
+  padding: 0.3rem 1.2rem 1.5rem 1.2rem;
   box-sizing: border-box;
 }
 .poster-center {
@@ -167,7 +204,6 @@ a.btn-add,
   letter-spacing: 0.02em;
 }
 
-/* Remove scale transform to prevent text blur on hover */
 /* Add New Film / TV Series button hover/focus matches card and pagination */
 .btn-add:hover,
 button.btn-add:hover,
@@ -229,9 +265,9 @@ a.btn-add:focus,
   margin-bottom: 1rem;
 }
 .pagination .btn {
-  min-width: 40px;
-  padding: 0.7rem 1.2rem;
+  min-width: 48px;
   font-size: 1.05rem;
+  padding: 0.6rem 1.1rem;
   border-radius: 16px;
   background: rgba(60, 65, 70, 0.92);
   backdrop-filter: blur(6px);
@@ -242,10 +278,12 @@ a.btn-add:focus,
 }
 .pagination .btn-primary {
   background: rgba(60, 65, 70, 0.92);
-  color: #e0e0e0;
+  color: #fff;
   cursor: default;
   pointer-events: none;
-  border: 1px solid #2c2f33;
+  border: 1px solid #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
 .pagination .btn-secondary {
   background: rgba(60, 65, 70, 0.92);
@@ -264,7 +302,7 @@ a.btn-add:focus,
   color: #fff;
   transform: translateY(-2px);
 }
-/* Remove gradient for pagination .btn-secondary:hover to match other buttons */
+
 .pagination .btn-secondary:hover {
   background: rgba(80, 85, 90, 0.98);
 }
@@ -300,7 +338,7 @@ body {
 /* Header */
 
 h1 {
-  font-size: 3.2rem;
+  font-size: clamp(1.4rem, 5vw, 2.6rem);
   font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
   font-weight: 900;
   letter-spacing: 0.06em;
@@ -336,7 +374,7 @@ button:hover,
 /* Form Styles */
 form {
   max-width: 500px;
-  margin: 0 auto; /* center horizontally */
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -431,31 +469,42 @@ label {
 /* Wrap input + suggestions in a container */
 .autocomplete-wrapper {
   position: relative;
-  width: 100%;
+  width: 280px;
 }
 
 /* Style the dropdown */
 #suggestions {
-  position: absolute;
-  top: 100%; /* appear below the input */
+  position: static;
+  top: 100%;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: auto;
   background-color: white;
   border: 1px solid #ccc;
   border-top: none;
   max-height: 200px;
   overflow-y: auto;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  box-sizing: border-box;
+  background: rgba(40, 44, 52, 0.98);
+  border: 1px solid #232526;
 }
 
 #suggestions li {
   padding: 8px 12px;
   cursor: pointer;
+  color: #222;
+  font-size: 1.08rem;
+  background: #fff;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  background: rgba(60, 65, 70, 0.96);
 }
 
 #suggestions li:hover {
   background-color: #f0f8ff;
+  background: rgba(80, 85, 90, 0.98);
 }
 
 .button-group {
@@ -551,7 +600,7 @@ button,
   /* border and border-radius removed to allow individual button classes to set their own */
   text-decoration: none;
   display: inline-block;
-  min-width: 100px; /* Makes buttons same width */
+  min-width: 100px;
   text-align: center;
   cursor: pointer;
   transition: 0.3s ease;
@@ -639,4 +688,16 @@ button,
 .modal-content .button-group {
   gap: 1.2rem;
   margin-top: 0.5rem;
+}
+
+#suggestions li:hover,
+#suggestions li:focus {
+  background: #00bcd4;
+  color: #232526;
+  font-weight: 700;
+  border-radius: 4px;
+  outline: 2px solid #232526;
+  outline-offset: 0px;
+  box-shadow: 0 2px 12px 0 rgba(0, 188, 212, 0.18);
+  border-bottom: 1px solid #232526;
 }
