@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/style.css" />
 
-<div class="container">
-  <h1>Oliver's Film & TV Series Tracker</h1>
+<div class="container" id="mainContent">
+  <h1>Film & TV Series Tracker</h1>
   <a class="btn-add" href="/media/new">🎬 Add New Film / TV Series</a>
 
   <div class="media-list">
@@ -41,7 +41,6 @@
     </div>
     <script>
     function flipCard(el) {
-      // Find the .card-inner parent
       let cardInner = el.closest('.card-inner');
       if (cardInner) {
         cardInner.classList.toggle('flipped');
@@ -89,23 +88,28 @@
   function openDeleteModal(itemId) {
     const modal = document.getElementById('deleteModal');
     const form = document.getElementById('deleteForm');
-    
+    const mainContent = document.getElementById('mainContent');
     // Update the form action with the item ID
     form.action = `/media/delete/${itemId}`;
-    
     // Show the modal
     modal.style.display = 'block';
+    // Blur the background
+    if (mainContent) mainContent.classList.add('blurred');
   }
 
   function closeDeleteModal() {
     document.getElementById('deleteModal').style.display = 'none';
+    const mainContent = document.getElementById('mainContent');
+    if (mainContent) mainContent.classList.remove('blurred');
   }
 
   // Optional: Close the modal if user clicks outside it
   window.onclick = function(event) {
     const modal = document.getElementById('deleteModal');
+    const mainContent = document.getElementById('mainContent');
     if (event.target === modal) {
       modal.style.display = 'none';
+      if (mainContent) mainContent.classList.remove('blurred');
     }
   }
 </script>

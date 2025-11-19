@@ -1,3 +1,7 @@
+.blurred {
+  filter: blur(6px);
+  transition: filter 0.3s;
+}
 #title[type="text"] {
   width: 280px;
   text-align: center;
@@ -65,7 +69,8 @@
     0 4px 24px rgba(0, 0, 0, 0.45);
   min-height: 520px;
   height: 100%;
-  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  transition: box-shadow 0.3s, border-color 0.3s, background 0.3s,
+    transform 0.2s;
   overflow: visible;
 }
 .card-flip {
@@ -112,13 +117,22 @@
   background: inherit;
 }
 .card-back {
-  background: rgba(40, 44, 52, 0.98);
+  background: rgba(60, 65, 70, 0.96);
   color: #fff;
+  border-radius: 16px;
+  border: 1.5px solid #fff;
+  box-shadow: 0 0 12px 2px rgba(255, 255, 255, 0.1),
+    0 4px 24px rgba(0, 0, 0, 0.45);
   transform: rotateY(180deg);
   z-index: 1;
   padding: 1.2rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 .card-poster {
   display: block;
@@ -419,7 +433,8 @@ label {
     0 4px 24px rgba(0, 0, 0, 0.45);
   min-height: 520px;
   height: 100%;
-  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  transition: box-shadow 0.3s, border-color 0.3s, background 0.3s,
+    transform 0.2s;
   overflow: visible;
 }
 
@@ -427,7 +442,8 @@ label {
   box-shadow: 0 0 24px 6px rgba(255, 255, 255, 0.18),
     0 8px 32px rgba(0, 0, 0, 0.55);
   border-color: #fff;
-  transform: scale(1.03) translateY(-6px);
+  transform: translateY(-2px);
+  /* No scale, so text stays sharp */
 }
 
 .media-content {
@@ -664,16 +680,16 @@ button,
 }
 
 .modal-content {
-  background: rgba(60, 65, 70, 0.98);
+  background: #3c4146;
   color: #fff;
   margin: 25% auto;
   padding: 2rem 1.5rem 1.5rem 1.5rem;
   border-radius: 16px;
-  border: 2.5px solid #fff;
+  border: 1.5px solid #fff;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25),
-    0 0 24px 6px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 12px 2px rgba(255, 255, 255, 0.1),
+    0 4px 24px rgba(0, 0, 0, 0.45);
   text-align: center;
   font-family: inherit;
 }
