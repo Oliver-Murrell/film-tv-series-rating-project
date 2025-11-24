@@ -482,13 +482,11 @@ label {
   background-color: #e6f7ff;
 }
 
-/* Wrap input + suggestions in a container */
 .autocomplete-wrapper {
   position: relative;
   width: 280px;
 }
 
-/* Style the dropdown */
 #suggestions {
   position: static;
   top: 100%;
@@ -613,7 +611,6 @@ button,
 .btn-danger {
   font-size: 1rem;
   padding: 0.6rem 1.2rem;
-  /* border and border-radius removed to allow individual button classes to set their own */
   text-decoration: none;
   display: inline-block;
   min-width: 100px;
@@ -646,9 +643,6 @@ button,
   transform: translateY(-2px);
   will-change: transform;
 }
-
-/* Standardize emoji icon size in edit/delete buttons */
-/* Ensure emoji icons are same size */
 
 .btn-add .icon-emoji,
 .btn-primary .icon-emoji,
