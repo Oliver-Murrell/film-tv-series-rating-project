@@ -22,7 +22,7 @@ async function fetchMedia(title) {
 // GET all media from the database
 router.get("/", async (req, res) => {
   const sort = req.query.sort || "created_at";
-  const order = sort === "rating" ? "DESC" : "DESC";
+  // const order = sort === "rating" ? "DESC" : "DESC";
   const page = parseInt(req.query.page) || 1;
   const limit = 9;
   const offset = (page - 1) * limit;
@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
 
   // Get paginated results
   const result = await pool.query(
-    `SELECT * FROM media ORDER BY ${sort} ${order} LIMIT $1 OFFSET $2`,
+    `SELECT * FROM media ORDER BY ${sort} DESC LIMIT $1 OFFSET $2`,
     [limit, offset]
   );
 
